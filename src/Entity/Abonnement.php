@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Abonnement
@@ -27,12 +28,20 @@ class Abonnement
      * @var string
      *
      * @ORM\Column(name="nomprenom", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Le nom et prénom ne peuvent pas être vides")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Le nom et prénom ne peuvent pas dépasser {{ limit }} caractères"
+     * )
      */
     private $nomprenom;
 
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string",columnDefinition="ENUM('male', 'female')")
+     * @Assert\Choice(choices={"male", "female"}, message="Le type doit être 'male' ou 'female'")
+
      */
     private $type;
 
@@ -40,6 +49,8 @@ class Abonnement
      * @var int
      *
      * @ORM\Column(name="age", type="integer", nullable=false)
+     * @Assert\NotBlank(message="L'âge ne peut pas être vide")
+     * @Assert\PositiveOrZero(message="L'âge doit être un nombre positif ")
      */
     private $age;
 
@@ -47,6 +58,8 @@ class Abonnement
      * @var int
      *
      * @ORM\Column(name="nbplace", type="integer", nullable=false)
+     *  @Assert\NotBlank(message="Le nombre de place ne peut pas être vide")
+     * @Assert\PositiveOrZero(message="Le nombre de place doit être un nombre positif ")
      */
     private $nbplace;
 

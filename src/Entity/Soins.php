@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Soins
@@ -28,7 +28,11 @@ class Soins
      * @var string
      *
      * @ORM\Column(name="nomcab", type="string", length=50, nullable=false)
-     * 
+     * @Assert\NotBlank(message="Le nom et prénom ne peuvent pas être vides")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Le nom et prénom ne peuvent pas dépasser {{ limit }} caractères"
+     * )
      */
     private $nomcab;
 
@@ -36,7 +40,11 @@ class Soins
      * @var string
      *
      * @ORM\Column(name="nomkine", type="string", length=50, nullable=false)
-     *
+     ** @Assert\NotBlank(message="Le nom et prénom ne peuvent pas être vides")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Le nom et prénom ne peuvent pas dépasser {{ limit }} caractères"
+     * )
      */
     private $nomkine;
 
@@ -44,6 +52,11 @@ class Soins
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Le nom et prénom ne peuvent pas être vides")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "Le nom et prénom ne peuvent pas dépasser {{ limit }} caractères"
+     * )
      */
     private $adresse;
 
